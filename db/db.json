@@ -6,6 +6,7 @@
         "password": 123456,
         "roleState": true,
         "default": true,
+        "info":111,
         "roleId": 1
       },
       {
@@ -13,6 +14,7 @@
         "password": "123",
         "roleState": true,
         "default": false,
+        "info":111,
         "roleId": 2,
         "id": 3
       }
@@ -23,7 +25,12 @@
         "roleName": "超级管理员",
         "roleType": 1,
         "rights": [
-          
+          "/student/personal-info",
+          "/student/exam-info",
+          "/teacher/personal-info" ,
+          "/teacher/student-manage",
+          "/teacher/exam-manage",
+          "/home"
         ]
       },
       {
@@ -31,7 +38,10 @@
         "roleName": "教师",
         "roleType": 2,
         "rights": [
-          
+          "/teacher/personal-info" ,
+          "/teacher/student-manage",
+          "/teacher/exam-manage",
+          "/home"
         ]
       },
       {
@@ -39,170 +49,10 @@
         "roleName": "学生",
         "roleType": 3,
         "rights": [
-          
+          "/student/personal-info",
+          "/student/exam-info",
+          "/home"
         ]
-      }
-    ],
-    "children": [
-      {
-        "id": 3,
-        "title": "添加用户",
-        "rightId": 2,
-        "key": "/user-manage/add",
-        "grade": 2
-      },
-      {
-        "id": 4,
-        "title": "删除用户",
-        "rightId": 2,
-        "key": "/user-manage/delete",
-        "grade": 2
-      },
-      {
-        "id": 5,
-        "title": "修改用户",
-        "rightId": 2,
-        "key": "/user-manage/update",
-        "grade": 2
-      },
-      {
-        "id": 6,
-        "title": "用户列表",
-        "rightId": 2,
-        "key": "/user-manage/list",
-        "pagepermisson": true,
-        "grade": 2
-      },
-      {
-        "id": 8,
-        "title": "角色列表",
-        "rightId": 7,
-        "key": "/right-manage/role/list",
-        "pagepermisson": 1,
-        "grade": 2
-      },
-      {
-        "id": 9,
-        "title": "权限列表",
-        "rightId": 7,
-        "key": "/right-manage/right/list",
-        "pagepermisson": 1,
-        "grade": 2
-      },
-      {
-        "id": 10,
-        "title": "修改角色",
-        "rightId": 7,
-        "key": "/right-manage/role/update",
-        "grade": 2
-      },
-      {
-        "id": 11,
-        "title": "删除角色",
-        "rightId": 7,
-        "key": "/right-manage/role/delete",
-        "grade": 2
-      },
-      {
-        "id": 12,
-        "title": "修改权限",
-        "rightId": 7,
-        "key": "/right-manage/right/update",
-        "grade": 2
-      },
-      {
-        "id": 13,
-        "title": "删除权限",
-        "rightId": 7,
-        "key": "/right-manage/right/delete",
-        "grade": 2
-      },
-      {
-        "id": 15,
-        "title": "新闻列表",
-        "rightId": 14,
-        "key": "/news-manage/list",
-        "grade": 2
-      },
-      {
-        "id": 16,
-        "title": "撰写新闻",
-        "rightId": 14,
-        "key": "/news-manage/add",
-        "grade": 2,
-        "pagepermisson": true
-      },
-      {
-        "id": 17,
-        "title": "新闻更新",
-        "rightId": 14,
-        "key": "/news-manage/update/:id",
-        "grade": 2,
-        "routepermisson": 1
-      },
-      {
-        "id": 18,
-        "title": "新闻预览",
-        "rightId": 14,
-        "key": "/news-manage/preview/:id",
-        "grade": 2,
-        "routepermisson": 1
-      },
-      {
-        "id": 19,
-        "title": "草稿箱",
-        "rightId": 14,
-        "key": "/news-manage/draft",
-        "pagepermisson": 1,
-        "grade": 2
-      },
-      {
-        "id": 20,
-        "title": "新闻分类",
-        "rightId": 14,
-        "key": "/news-manage/category",
-        "pagepermisson": 1,
-        "grade": 2
-      },
-      {
-        "id": 22,
-        "title": "审核新闻",
-        "rightId": 21,
-        "key": "/audit-manage/audit",
-        "pagepermisson": 1,
-        "grade": 2
-      },
-      {
-        "id": 23,
-        "title": "审核列表",
-        "rightId": 21,
-        "key": "/audit-manage/list",
-        "pagepermisson": 1,
-        "grade": 2
-      },
-      {
-        "id": 25,
-        "title": "待发布",
-        "rightId": 24,
-        "key": "/publish-manage/unpublished",
-        "pagepermisson": 1,
-        "grade": 2
-      },
-      {
-        "id": 26,
-        "title": "已发布",
-        "rightId": 24,
-        "key": "/publish-manage/published",
-        "pagepermisson": 1,
-        "grade": 2
-      },
-      {
-        "id": 27,
-        "title": "已下线",
-        "rightId": 24,
-        "key": "/publish-manage/sunset",
-        "pagepermisson": 1,
-        "grade": 2
       }
     ],
     "rights": [
@@ -215,15 +65,36 @@
       },
       {
         "id": 2,
-        "title": "用户管理",
-        "key": "/user-manage",
+        "title": "学生个人信息",
+        "key": "/student/personal-info",
         "pagepermisson": 1,
         "grade": 1
       },
       {
-        "id": 7,
-        "title": "权限管理",
-        "key": "/right-manage",
+        "id": 3,
+        "title": "考试信息",
+        "key": "/student/exam-info",
+        "pagepermisson": 1,
+        "grade": 1
+      },
+      {
+        "id": 4,
+        "title": "教师个人信息",
+        "key": "/teacher/personal-info",
+        "pagepermisson": 1,
+        "grade": 1
+      },
+      {
+        "id": 5,
+        "title": "学生管理",
+        "key": "/teacher/student-manage",
+        "pagepermisson": 1,
+        "grade": 1
+      },
+      {
+        "id": 6,
+        "title": "考试管理",
+        "key": "/student/exam-info",
         "pagepermisson": 1,
         "grade": 1
       }
