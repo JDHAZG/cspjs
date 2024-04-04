@@ -1,5 +1,5 @@
-import React from "react";
-import { Form, Button, Input, message, Radio } from "antd";
+import React, { useState } from "react";
+import { Form, Button, Input, Radio,notification,message } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import "./Register.css";
 // import Particles from "react-tsparticles";
@@ -8,28 +8,33 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 export default function Login() {
   const navigate = useNavigate();
+  const [roleId, setRoleId] = useState(2)
+  const onChange = (e) => {
+    console.log('radio checked', e.target.value);
+    setRoleId(e.target.value);
+  };
   const onFinish = (values) => {
-    axios
-      .get(
-        `/users?username=${
-          //链接处不要随意换行
-          values.username
-        }&password=${values.password}&roleState=true&_expand=role`
-      )
-      .then((res) => {
-        // console.log(res.data);
-        if (res.data.length === 0) {
-          message.error("用户名或密码不匹配");
-        } else {
-          localStorage.removeItem("token");
-          setTimeout(() => {
-            localStorage.setItem("token", JSON.stringify(res.data[0]));
-          }, 0);
-          setTimeout(() => {
-            navigate("/");
-          }, 0);
-        }
+    // console.log(values,roleId)
+    if(values.password===values.passwordCheck)
+    axios.post('/users',{
+      "username":values.username,
+      "password":values.password,
+      "roleId":roleId,
+      "default":true,
+      "info":"待填写",
+      "roleState":true,
+      "id":0
+     }).then((res) => { 
+      navigate("/login")
+      notification.info({
+        message: `通知`,
+        description:
+          `注册成功！`,
+        placement:"bottomRight",
       });
+      })
+    else
+    message.error("两次密码输入不一致！")
   };
   return (
     <div
@@ -42,9 +47,9 @@ export default function Login() {
       <div className="formContainer">
         <div className="registertitle">CSP-J/S考务系统</div>
         <Form name="normal_register" className="register-form" onFinish={onFinish}>
-          <Radio.Group style={{color:"white"}}>
-            <Radio value={1} style={{color:"white"}}>教师</Radio>
-            <Radio value={2} style={{color:"white"}}>学生</Radio>
+          <Radio.Group style={{color:"white"}} onChange={onChange} value={roleId}>
+            <Radio value={2} style={{color:"white"}} defaultChecked={true}>教师</Radio>
+            <Radio value={3} style={{color:"white"}}>学生</Radio>
           </Radio.Group>
           <Form.Item
             name="username"
@@ -63,6 +68,16 @@ export default function Login() {
               prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
               placeholder="Password"
+            />
+          </Form.Item>
+          <Form.Item
+            name="passwordCheck"
+            rules={[{ required: true, message: "Please input your Password again!" }]}
+          >
+            <Input
+              prefix={<LockOutlined className="site-form-item-icon" />}
+              type="password"
+              placeholder="Password again"
             />
           </Form.Item>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
