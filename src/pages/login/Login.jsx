@@ -20,7 +20,7 @@ export default function Login(props) {
     // console.log(values);
     // &_expand=role
     axios.get(`/users?username=${  //链接处不要随意换行
-    values.username}&password=${values.password}&roleState=true`).then((res) => { 
+    values.username}&password=${values.password}&roleState=true&_expand=role`).then((res) => { 
     // console.log(res.data);
     if(res.data.length===0){
       message.error("用户名或密码不匹配")
@@ -30,7 +30,6 @@ export default function Login(props) {
       localStorage.setItem("token",JSON.stringify(res.data[0]))
       changeLoginState(true)
       navigate("/home")
-      // setTimeout(() => { navigate("/") },0);
     }
     });
 

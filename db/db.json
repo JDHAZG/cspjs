@@ -16,7 +16,7 @@
       "default": false,
       "info": 111,
       "roleId": 2,
-      "id": 3
+      "id": 2
     },
     {
       "username": "tynva",
@@ -25,16 +25,16 @@
       "default": true,
       "info": "待填写",
       "roleState": true,
-      "id": 4
+      "id": 3
     },
     {
       "username": "jdh",
       "password": "12345678",
-      "roleId": 3,
+      "roleId": 2,
       "default": true,
       "info": "待填写",
       "roleState": true,
-      "id": 5
+      "id": 4
     }
   ],
   "roles": [
@@ -112,7 +112,7 @@
     {
       "id": 6,
       "title": "考试管理",
-      "key": "/student/exam-info",
+      "key": "/teacher/exam-manage",
       "pagepermisson": 1,
       "grade": 1
     }
