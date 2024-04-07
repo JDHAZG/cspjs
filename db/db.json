@@ -7,7 +7,13 @@
       "roleState": true,
       "default": true,
       "info": 111,
-      "roleId": 1
+      "roleId": 1,
+      "group": "",
+      "AuthenticationLanguage": "",
+      "level": "",
+      "gender": "",
+      "grade": "",
+      "school": ""
     },
     {
       "username": "钢蛋",
@@ -16,7 +22,13 @@
       "default": false,
       "info": 111,
       "roleId": 2,
-      "id": 2
+      "id": 2,
+      "group": "",
+      "AuthenticationLanguage": "",
+      "level": "",
+      "gender": "",
+      "grade": "",
+      "school": ""
     },
     {
       "username": "tynva",
@@ -25,7 +37,13 @@
       "default": true,
       "info": "待填写",
       "roleState": true,
-      "id": 3
+      "id": 3,
+      "group": "入门级",
+      "AuthenticationLanguage": "C++",
+      "level": "初中",
+      "gender": "男",
+      "grade": "初三",
+      "school": "武汉光谷未来学校"
     },
     {
       "username": "jdh",
@@ -34,7 +52,13 @@
       "default": true,
       "info": "待填写",
       "roleState": true,
-      "id": 4
+      "id": 4,
+      "group": "",
+      "AuthenticationLanguage": "",
+      "level": "",
+      "gender": "",
+      "grade": "",
+      "school": ""
     }
   ],
   "roles": [
