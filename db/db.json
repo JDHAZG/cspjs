@@ -13,7 +13,8 @@
       "level": "",
       "gender": "",
       "grade": "",
-      "school": ""
+      "school": "",
+      "mail": ""
     },
     {
       "username": "钢蛋",
@@ -28,7 +29,8 @@
       "level": "",
       "gender": "",
       "grade": "",
-      "school": ""
+      "school": "",
+      "mail": ""
     },
     {
       "username": "tynva",
@@ -43,7 +45,8 @@
       "level": "初中",
       "gender": "男",
       "grade": "初三",
-      "school": "武汉光谷未来学校"
+      "school": "武汉光谷未来学校",
+      "mail": "tynva@foxmail.com"
     },
     {
       "username": "jdh",
@@ -56,9 +59,10 @@
       "group": "",
       "AuthenticationLanguage": "",
       "level": "",
-      "gender": "",
+      "gender": "男",
       "grade": "",
-      "school": ""
+      "school": "HUST",
+      "mail": "jdh@123.com"
     }
   ],
   "roles": [
