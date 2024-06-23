@@ -6,7 +6,7 @@ import "./Register.css";
 // import { loadFull } from "tsparticles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-export default function Login() {
+export default function Register() {
   const navigate = useNavigate();
   const [roleId, setRoleId] = useState(2)
   const onChange = (e) => {

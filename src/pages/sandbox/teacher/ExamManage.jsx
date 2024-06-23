@@ -5,6 +5,7 @@ import style from "./Exam.module.css";
 import ExamName from '../../../components/examManage/ExamName';
 import ExamArrangement from '../../../components/examManage/ExamArrangement';
 import axios from 'axios';
+import ExamineeList from '../../../components/examManage/ExamineeList';
 // https://www.cnblogs.com/gxp69/p/7081859.html form表单提交后不刷新
 const onSubmit = (e) => { 
   notification.info({
@@ -17,6 +18,8 @@ const onSubmit = (e) => {
 export default function ExamManage() {
   const [current, setCurrent] = useState(0);
   const [examineeNum, setExamineeNum] = useState(0)
+  const [examList, setExamList] = useState([])
+  const [examName, setExamName] = useState('')
   useEffect(() => {
     if(current===2)
     axios.get(`http://localhost:9000/parse`).then((res) => { 
@@ -29,6 +32,12 @@ export default function ExamManage() {
   const handlePrevious = () => {
     setCurrent(current - 1);
   };
+  const getExamList = (value) => { 
+    setExamList(value)
+   }
+  const getExamName = (value) => { 
+    setExamName(value)
+   }
   return (
     // <div>
     //   <form action='http://localhost:9000/upload' method="post" encType="multipart/form-data" target='nm_iframe'>
@@ -60,6 +69,10 @@ export default function ExamManage() {
             title: "考场编排",
             description: "考场座位编排和准考证号生成",
           },
+          {
+            title: "考生列表",
+            description: "考生及其考场和准考证号展示",
+          },
         ]}
       />
       <div style={{marginTop:"50px"}}>
@@ -85,10 +98,13 @@ export default function ExamManage() {
           </div>
         </div>
         <div className={current === 1 ? "" : style.active}>
-          <ExamName />
+          <ExamName getExamName={getExamName}/>
         </div>
         <div className={current === 2 ? "" : style.active}>
-          <ExamArrangement current={current} examineeNum={examineeNum}/>
+          <ExamArrangement current={current} examineeNum={examineeNum} getExamList={getExamList}/>
+        </div>
+        <div className={current === 3 ? "" : style.active}>
+          <ExamineeList examList={examList} examName={examName}/>
         </div>
       </div>
       <div style={{ marginTop: "50px" }}>
@@ -97,7 +113,7 @@ export default function ExamManage() {
             <Button type="primary">确定,自动编排并生成准考证</Button>
           </span>
         )} */}
-        {current < 2 && (
+        {current < 3 && (
           <Button type="primary" onClick={handleNext}>
             下一步
           </Button>

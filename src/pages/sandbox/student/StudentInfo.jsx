@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Cascader } from "antd";
 import axios from "axios";
+import { cityArray } from "../../../assets/cityData";
 const { TextArea } = Input;
 export default function StudentInfo() {
   const [form] = Form.useForm();
@@ -28,6 +29,19 @@ export default function StudentInfo() {
           ]}
         >
           <Input disabled={change} />
+        </Form.Item>
+        <Form.Item
+          name="birthPlace"
+          label="生源地"
+          // initialValue={personalInfo.username}
+          rules={[
+            {
+              required: true,
+              message: "请输入您的姓名!",
+            },
+          ]}
+        >
+          <Cascader defaultValue={['河北省', '石家庄市', '长安区']} options={cityArray} disabled={change}/>
         </Form.Item>
         <Form.Item
           name="group"

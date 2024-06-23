@@ -4,6 +4,7 @@ import axios from "axios";
 const { TextArea } = Input;
 export default function ExamArrangement(props) {
   const [form] = Form.useForm();
+  const getExamList=props.getExamList
   form.setFieldsValue({
     examineeNum: props.examineeNum,
   });
@@ -21,7 +22,8 @@ export default function ExamArrangement(props) {
         axios.get(
           `http://localhost:9000/seatArrangement?prefix=${value.prefix}&placeholder=${value.placeholder}&examineeNum=${value.examineeNum}&seatsNum=${value.seatsNum}`
         ).then((res) => { 
-          console.log('test1111')
+          // console.log(res)
+          getExamList(res.data.newStuInfo)
          })
       })
       .catch(() => {});

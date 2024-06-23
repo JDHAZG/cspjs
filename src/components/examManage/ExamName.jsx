@@ -5,9 +5,10 @@ const options = [
   { value: "CSP-J", label: "CSP-J" },
   { value: "CSP-S", label: "CSP-S" },
 ];
-export default function ExamName() {
+export default function ExamName(props) {
   const [customize, setCustomize] = useState(false);
   const [examName, setExamName] = useState('')
+  const getExamName=props.getExamName
   const handleSelectChange = (value) => {
     console.log(value)
     setExamName(value)
@@ -18,6 +19,7 @@ export default function ExamName() {
   };
   const onSubmit = () => { 
     axios.get(`http://localhost:9000/examName?name=${examName}`).then((res) => { 
+      getExamName(examName)
       notification.info({
         message: `通知`,
         description:

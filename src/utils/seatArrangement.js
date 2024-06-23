@@ -1,6 +1,7 @@
 var _ = require('lodash');
 // 准考证号形式HB-J00910，HB+类别+考场+座位编号
 function seatArrangement(prefix,placeholder,seatsNum,studentInfo) {
+  const start=Date.now()
   let arrangementLeft=studentInfo.length
   const KCnum=Math.ceil(studentInfo.length/seatsNum)
   const groupInfo=_.groupBy(studentInfo, item=>item['更新学校']);
@@ -32,10 +33,11 @@ function seatArrangement(prefix,placeholder,seatsNum,studentInfo) {
           break
         }
         /**防止数组溢出 */
-        console.log(schoolName,schoolNum[schoolName],j+index,'j:'+j,'memo:'+index)
+        // console.log(schoolName,schoolNum[schoolName],j+index,'j:'+j,'memo:'+index)
         // C[i-1][num]=`HB-J${i+prefix+groupInfo[schoolName][j+index]['序号']+num}`
         C[i-1][num]=`HB-J${i.toString().padStart(2,'0')+prefix+groupInfo[schoolName][j+index]['序号'].toString().padStart(4,'0')+num.toString().padStart(2,'0')}`
         groupInfo[schoolName][j+index]['准考证号test']=C[i-1][num]
+        groupInfo[schoolName][j+index]['考场']=`第${i}考场`
         num+=2
       }
       // arrangeMemo[schoolName]+=L[count]
@@ -71,9 +73,10 @@ function seatArrangement(prefix,placeholder,seatsNum,studentInfo) {
           break
         }
         /**防止数组溢出 */
-        console.log('偶数:',schoolName,schoolNum[schoolName],j+index,'j:'+j,'memo:'+index)
+        // console.log('偶数:',schoolName,schoolNum[schoolName],j+index,'j:'+j,'memo:'+index)
         C[i-1][num]=`HB-J${i.toString().padStart(2,'0')+prefix+groupInfo[schoolName][j+index]['序号'].toString().padStart(4,'0')+num.toString().padStart(2,'0')}`
         groupInfo[schoolName][j+index]['准考证号test']=C[i-1][num]
+        groupInfo[schoolName][j+index]['考场']=`第${i}考场`
         num+=2
       }
       // arrangeMemo[schoolName]+=L[count]
@@ -84,7 +87,9 @@ function seatArrangement(prefix,placeholder,seatsNum,studentInfo) {
     arrangementLeft=arrangementLeft-Math.floor(seatsNum/2)
   }
 
-  console.log(JSON.stringify(C))
+  // console.log(JSON.stringify(C))
+  console.log('算法用时:',Date.now()-start)
+  // Promise.resolve().then(() => { console.log('算法用时:',Date.now()-start) })
   return groupInfo
 }
 exports.seatArrangement=seatArrangement

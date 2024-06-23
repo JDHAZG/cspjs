@@ -1,5 +1,6 @@
 // https://www.jianshu.com/p/93151c777caf
 var fs = require('fs');
+var _ = require('lodash');
 var express = require('express');
 var multer  = require('multer');
 const util = require("util");
@@ -68,9 +69,14 @@ app.get('/parse',function(req,res,next) {
     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     console.log('test',buff)
-    json=excelParse(buff)
+    // json=excelParse(buff)
+    try {
+        json=excelParse(buff)
+    } catch (error) {
+        console.log(error);
+    }
     // console.log(json.length,json)
-    console.log(json.length)
+    // console.log(json.length)
     res.send({'examineeNum':json.length})
 })
 
@@ -82,7 +88,8 @@ app.get('/seatArrangement',function(req,res,next) {
     // console.log(json)
     const {prefix,placeholder,examineeNum,seatsNum}=req.query
     const groupInfo=seatArrangement(prefix,placeholder,seatsNum,json)
-    res.send({'groupInfo':groupInfo})
+    const newStuInfo=_.flattenDeep(Object.values(groupInfo))
+    res.send({'newStuInfo':newStuInfo})
 })
 
 app.get('/form', function(req, res, next){
